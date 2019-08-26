@@ -17,9 +17,8 @@ func main() {
 
 	r := mux.NewRouter()
 
-	r.HandleFunc("/api/v1/sections", controllers.Section.Create).Methods("POST")
+	r.HandleFunc("/api/v1/articles", controllers.Article.Create).Methods("POST")
 
-	// http.Handle("/", r)
 	handler := cors.Default().Handler(r)
 	http.Handle("/", handler)
 
