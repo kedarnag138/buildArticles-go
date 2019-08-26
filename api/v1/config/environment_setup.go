@@ -1,11 +1,12 @@
 package config
 
 import (
-	"database/sql"
+	"build-sections/api/v1/config/db"
+	"build-sections/api/v1/models"
 	"log"
 	"os"
 
-	"build-sections/api/v1/config/db"
+	"github.com/jinzhu/gorm"
 )
 
 func SetupEnv(goEnv string) (env string) {
@@ -16,7 +17,8 @@ func SetupEnv(goEnv string) (env string) {
 	case "development":
 		os.Setenv("development", "development")
 		log.Println(os.Getenv("development"))
-		db.DBCon, err = sql.Open("postgres", "user=postgres password=password dbname=build_sections_development sslmode=disable")
+		db.DB, err = gorm.Open("postgres", "user=postgres password=password dbname=build_articles_development sslmode=disable")
+		db.DB.AutoMigrate(&models.Article{})
 		if err != nil {
 			panic(err)
 		}

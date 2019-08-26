@@ -1,4 +1,0 @@
-{
-  "database_file": "./api/v1/config/database.yml",
-  "environment"  : "development"
-}

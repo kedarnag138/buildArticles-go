@@ -1,11 +1,11 @@
 package db
 
 import (
-  "database/sql"
+	"github.com/jinzhu/gorm"
 )
 
 var (
-    // DBCon is the connection handle
-    // for the database
-    DBCon *sql.DB
+	// DB is the connection handle
+	// for the database
+	DB *gorm.DB
 )
