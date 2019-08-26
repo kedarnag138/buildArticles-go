@@ -9,6 +9,7 @@ import (
 
 	"github.com/asaskevich/govalidator"
 	"github.com/gorilla/mux"
+
 	_ "github.com/lib/pq"
 )
 
@@ -40,7 +41,7 @@ func (s articlesController) Create(rw http.ResponseWriter, req *http.Request) {
 		}
 		b, err := json.Marshal(models.Response{
 			Status:  422,
-			Message: "Failed: Missing fields",
+			Message: err.Error(),
 		})
 		if err != nil {
 			println("error: " + err.Error())
