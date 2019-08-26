@@ -1,0 +1,35 @@
+development:
+  adapter: postgres
+  encoding: utf8
+  database: rvidi_development
+  pool: 5
+  username: postgres
+  password: password
+  host: localhost
+
+it:
+  adapter: postgres
+  encoding: utf8
+  database: rvidi_it
+  pool: 5
+  username: postgres
+  password: password
+  host: 54.191.38.21
+
+staging:
+  adapter: postgres
+  encoding: utf8
+  database: rvidi_staging
+  pool: 5
+  username: postgres
+  password: password
+  host: 54.191.38.21
+
+production:
+  adapter: postgres
+  encoding: utf8
+  database: rvidi_production
+  pool: 5
+  username: postgres
+  password: password
+  host: 198.162.1.1

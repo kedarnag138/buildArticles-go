@@ -1,0 +1,3 @@
+development:
+  driver: postgres
+  open: user=postgres password=password dbname=build_sections_development sslmode=disable
