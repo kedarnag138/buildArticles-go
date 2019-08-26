@@ -10,7 +10,8 @@ type Article struct {
 }
 
 type Response struct {
-	Status  int
-	Message string
-	Data    uint
+	Status   int
+	Message  string
+	Data     uint
+	Articles []Article
 }

@@ -22,6 +22,14 @@ func SetupEnv(goEnv string) (env string) {
 		if err != nil {
 			panic(err)
 		}
+	case "test":
+		os.Setenv("test", "test")
+		log.Println(os.Getenv("test"))
+		db.DB, err = gorm.Open("postgres", "user=postgres password=password dbname=build_articles_test sslmode=disable")
+		db.DB.AutoMigrate(&models.Article{})
+		if err != nil {
+			panic(err)
+		}
 	}
 	return os.Getenv("development")
 }
