@@ -4,6 +4,11 @@
 	"GodepVersion": "v80",
 	"Deps": [
 		{
+			"ImportPath": "github.com/asaskevich/govalidator",
+			"Comment": "v9-29-gf61b66f",
+			"Rev": "f61b66f89f4a311bef65f13e575bcf1a2ffadda6"
+		},
+		{
 			"ImportPath": "github.com/gorilla/mux",
 			"Comment": "v1.7.3-7-g9536e40",
 			"Rev": "9536e4053d763b54d935f1ce731a315cfb42b979"
