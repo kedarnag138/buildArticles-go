@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"strconv"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gorilla/mux"
 	_ "github.com/lib/pq"
 )
@@ -32,11 +33,27 @@ func (s articlesController) Create(rw http.ResponseWriter, req *http.Request) {
 	}
 	defer req.Body.Close()
 
-	if err := db.DB.Save(&article).Error; err != nil {
-		respondError(rw, http.StatusInternalServerError, err.Error())
-		return
+	if article.Title == "" || article.Author == "" || article.Content == "" {
+		_, err := govalidator.ValidateStruct(article)
+		if err != nil {
+			println("error: " + err.Error())
+		}
+		b, err := json.Marshal(models.Response{
+			Status:  422,
+			Message: "Failed: Missing fields",
+		})
+		if err != nil {
+			println("error: " + err.Error())
+		}
+		rw.Header().Set("Content-Type", "application/json")
+		rw.Write(b)
+	} else {
+		if err := db.DB.Save(&article).Error; err != nil {
+			respondError(rw, http.StatusInternalServerError, err.Error())
+			return
+		}
+		respondJSON(rw, http.StatusCreated, article)
 	}
-	respondJSON(rw, http.StatusCreated, article)
 }
 
 func (s articlesController) Show(rw http.ResponseWriter, req *http.Request) {
