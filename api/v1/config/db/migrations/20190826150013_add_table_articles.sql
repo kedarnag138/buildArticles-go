@@ -1,6 +1,6 @@
 -- +goose Up
 -- +goose StatementBegin
-CREATE TABLE sections (
+CREATE TABLE articles (
   id SERIAL,
   title varchar(100),
   content text,
@@ -11,5 +11,5 @@ CREATE TABLE sections (
 
 -- +goose Down
 -- +goose StatementBegin
-DROP TABLE sections;
+DROP TABLE articles;
 -- +goose StatementEnd

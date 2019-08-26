@@ -1,0 +1,42 @@
+{
+	"ImportPath": "build-sections",
+	"GoVersion": "go1.12",
+	"GodepVersion": "v80",
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Comment": "v1.7.3-7-g9536e40",
+			"Rev": "9536e4053d763b54d935f1ce731a315cfb42b979"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/gorm",
+			"Comment": "v1.9.10",
+			"Rev": "836fb2c19d84dac7b0272958dfb9af7cf0d0ade4"
+		},
+		{
+			"ImportPath": "github.com/jinzhu/inflection",
+			"Comment": "v1.0.0",
+			"Rev": "f5c5f50e6090ae76a29240b61ae2a90dd810112e"
+		},
+		{
+			"ImportPath": "github.com/lib/pq",
+			"Comment": "v1.2.0-8-g7822342",
+			"Rev": "78223426e7c66d631117c0a9da1b7f3fde4d23a5"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/oid",
+			"Comment": "v1.2.0-8-g7822342",
+			"Rev": "78223426e7c66d631117c0a9da1b7f3fde4d23a5"
+		},
+		{
+			"ImportPath": "github.com/lib/pq/scram",
+			"Comment": "v1.2.0-8-g7822342",
+			"Rev": "78223426e7c66d631117c0a9da1b7f3fde4d23a5"
+		},
+		{
+			"ImportPath": "github.com/rs/cors",
+			"Comment": "v1.7.0",
+			"Rev": "db0fe48135e83b5812a5a31be0eea66984b1b521"
+		}
+	]
+}
