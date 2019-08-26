@@ -18,6 +18,8 @@ func main() {
 	r := mux.NewRouter()
 
 	r.HandleFunc("/api/v1/articles", controllers.Article.Create).Methods("POST")
+	r.HandleFunc("/api/v1/articles", controllers.Article.ListAll).Methods("GET")
+	r.HandleFunc("/api/v1/articles/{id:[0-9]+}", controllers.Article.Show).Methods("GET")
 
 	handler := cors.Default().Handler(r)
 	http.Handle("/", handler)
