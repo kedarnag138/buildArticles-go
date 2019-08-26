@@ -7,6 +7,8 @@ import (
 	"io/ioutil"
 	"net/http"
 
+	"github.com/asaskevich/govalidator"
+
 	_ "github.com/lib/pq"
 )
 
@@ -28,20 +30,34 @@ func (s articlesController) Create(rw http.ResponseWriter, req *http.Request) {
 
 	article := models.Article{Title: params.Title, Author: params.Author, Content: params.Content}
 
-	response := db.DB.Create(&article).Scan(&article)
-
-	if response != nil {
+	if params.Title == "" || params.Author == "" || params.Content == "" {
+		_, err := govalidator.ValidateStruct(params)
+		if err != nil {
+			println("error: " + err.Error())
+		}
 		b, err := json.Marshal(models.Response{
-			Status:  201,
-			Message: "success",
-			Data:    article.ID,
+			Status:  422,
+			Message: err.Error(),
 		})
 		if err != nil {
 			panic(err)
 		}
-
 		rw.Header().Set("Content-Type", "application/json")
-		rw.WriteHeader(http.StatusCreated)
 		rw.Write(b)
+	} else {
+		if db.DB.Create(&article).Scan(&article) != nil {
+			b, err := json.Marshal(models.Response{
+				Status:  201,
+				Message: "success",
+				Data:    article.ID,
+			})
+			if err != nil {
+				panic(err)
+			}
+
+			rw.Header().Set("Content-Type", "application/json")
+			rw.WriteHeader(http.StatusCreated)
+			rw.Write(b)
+		}
 	}
 }
